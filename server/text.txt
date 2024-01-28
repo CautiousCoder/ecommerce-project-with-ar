@@ -1,0 +1,2 @@
+MongoDB Password: "hWtQy1P34kkjzdMZ"
+Connect Link: "mongodb+srv://cautiouscoder0:<password>@cluster0.osomrq0.mongodb.net/"
