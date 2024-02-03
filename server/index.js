@@ -9,14 +9,17 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
+import session from "express-session";
 import helmet from "helmet";
 import mongoose from "mongoose";
 import morgan from "morgan";
 
 import clientRoutes from "./routes/client.js";
+import frontEndRoutes from "./routes/frontEnd.js";
 import generalRoutes from "./routes/general.js";
 import managementRoutes from "./routes/management.js";
 import salesRoutes from "./routes/sales.js";
+import signedUserRoutes from "./routes/signedUser.js";
 
 // data inject
 
@@ -32,6 +35,18 @@ import salesRoutes from "./routes/sales.js";
 dotenv.config();
 const app = express();
 app.use(express.json());
+
+// session
+app.use(
+  session({
+    secret: "my_secret_key",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
+  })
+);
+
+//
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
@@ -39,7 +54,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-// ROUTES
+// set template engine
+app.set("view engine", "ejs");
+
+// FRONTEND ROUTES
+app.use("/frontEnd", frontEndRoutes);
+app.use("/signedUser", signedUserRoutes);
+
+// BACKEND ROUTES
 app.use("/general", generalRoutes);
 app.use("/client", clientRoutes);
 app.use("/management", managementRoutes);

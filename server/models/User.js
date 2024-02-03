@@ -24,7 +24,10 @@ const UserSchema = new mongoose.Schema(
     country: String,
     occupation: String,
     phoneNumber: String,
-    transactions: Array,
+    transactions: {
+      type: Array,
+      default: null,
+    },
     role: {
       type: String,
       enum: ["user", "admin", "superadmin"],

@@ -1,8 +1,12 @@
 import {
+  AddShoppingCartOutlined,
   AdminPanelSettingsOutlined,
   CalendarMonthOutlined,
+  CategoryOutlined,
   ChevronLeft,
   ChevronRightOutlined,
+  ExpandLessOutlined,
+  ExpandMoreOutlined,
   Groups2,
   HomeOutlined,
   PieChartOutline,
@@ -16,6 +20,7 @@ import {
 } from "@mui/icons-material";
 import {
   Box,
+  Collapse,
   Divider,
   Drawer,
   IconButton,
@@ -46,8 +51,19 @@ const navItems = [
   { text: "Monthly", icon: <CalendarMonthOutlined /> },
   { text: "Breakdown", icon: <PieChartOutline /> },
   { text: "Management", icon: null },
-  { text: "Admins", icon: <AdminPanelSettingsOutlined /> },
+  { text: "Users", icon: <AdminPanelSettingsOutlined /> },
   { text: "Performance", icon: <TrendingUpOutlined /> },
+];
+
+// dropdown menu for Products
+const productDropDown = [
+  { text: "All Products", icon: <ShoppingCartOutlined />, link: "" },
+  {
+    text: "Add Products",
+    icon: <AddShoppingCartOutlined />,
+    link: "addProduct",
+  },
+  { text: "Category", icon: <CategoryOutlined />, link: "category" },
 ];
 
 const Sidebar = ({
@@ -59,6 +75,9 @@ const Sidebar = ({
 }) => {
   const { pathname } = useLocation();
   const [active, setActive] = useState("");
+  const [subActive, setSubActive] = useState("");
+  const [open, setOpen] = useState(false);
+  const [click, setClick] = useState(false);
   const navigate = useNavigate();
   const theme = useTheme();
   const colors = theme.palette;
@@ -152,11 +171,23 @@ const Sidebar = ({
                 }
                 const linkText = text.toLowerCase();
                 return (
-                  <ListItem key={text} disablePadding>
+                  <ListItem
+                    key={text}
+                    disablePadding
+                    sx={{ position: "relative", overflowAnchor: "none" }}
+                  >
                     <ListItemButton
                       onClick={() => {
-                        navigate(`/${linkText}`);
+                        linkText === "products"
+                          ? null
+                          : navigate(`/${linkText}`);
                         setActive(linkText);
+                        linkText === "products"
+                          ? setClick(true)
+                          : setClick(false);
+                        linkText === "products"
+                          ? setOpen(true)
+                          : setOpen(false);
                       }}
                       sx={{
                         backgroundColor:
@@ -183,8 +214,64 @@ const Sidebar = ({
                         }}
                         primary={text}
                       />
-                      {active === linkText && (
-                        <ChevronRightOutlined sx={{ ml: "auto" }} />
+                      {linkText === active ? (
+                        open ? (
+                          <ExpandLessOutlined />
+                        ) : (
+                          <ExpandMoreOutlined />
+                        )
+                      ) : (
+                        active === linkText && (
+                          <ChevronRightOutlined sx={{ ml: "auto" }} />
+                        )
+                      )}
+
+                      {/* Drop down menu */}
+                      {/* For Products */}
+                      {linkText === "products" && (
+                        <Collapse in={open} timeout={"auto"} unmountOnExit>
+                          <List
+                            sx={{
+                              position: "absolute",
+                              left: "20%",
+                              top: "100%",
+                              width: "80%",
+                              zIndex: 1200,
+                              backgroundColor: colors.background.default,
+                            }}
+                          >
+                            {productDropDown.map(({ text, icon, link }) => {
+                              return (
+                                <ListItem key={link} disablePadding>
+                                  <ListItemButton
+                                    onClick={() => {
+                                      navigate(`/${linkText}/${link}`);
+                                      setSubActive(link);
+                                      setActive(linkText);
+                                    }}
+                                    sx={{
+                                      backgroundColor:
+                                        subActive === link
+                                          ? colors.secondary[600]
+                                          : "",
+                                      padding: "4px !important",
+                                    }}
+                                  >
+                                    <ListItemIcon fontSize={"small"}>
+                                      {icon}
+                                    </ListItemIcon>
+                                    <ListItemText primary={text} />
+                                    {subActive === link && (
+                                      <ChevronRightOutlined
+                                        sx={{ ml: "auto" }}
+                                      />
+                                    )}
+                                  </ListItemButton>
+                                </ListItem>
+                              );
+                            })}
+                          </List>
+                        </Collapse>
                       )}
                     </ListItemButton>
                   </ListItem>

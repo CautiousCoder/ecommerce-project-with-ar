@@ -15,6 +15,8 @@ export const api = createApi({
     "Performance",
   ],
   endpoints: (build) => ({
+    // front-end route
+
     // for general route
     getUser: build.query({
       query: (id) => `general/user/${id}`,
@@ -55,13 +57,17 @@ export const api = createApi({
 
     // for admin route
     getAdmins: build.query({
-      query: () => "management/admins",
+      query: () => "management/users",
       providesTags: ["Admins"],
     }),
     getPerformance: build.query({
       query: (id) => `management/performance/${id}`,
       providesTags: ["Performance"],
     }),
+    // getAdmins: build.query({
+    //   query: () => "management/admins/add",
+    //   providesTags: ["Admins"],
+    // }),
   }),
 });
 

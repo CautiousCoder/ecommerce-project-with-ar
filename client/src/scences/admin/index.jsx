@@ -1,6 +1,9 @@
-import { Box, useTheme } from "@mui/material";
+import { AddCircleOutline } from "@mui/icons-material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import { Link } from "react-router-dom";
 import CustomColumnMenu from "../../components/DataGridCustomColumnMenu";
+import FlexBetween from "../../components/FlexBetween";
 import Header from "../../components/Header";
 import { useGetAdminsQuery } from "../../state/api";
 
@@ -49,10 +52,36 @@ const Admin = () => {
 
   return (
     <Box margin={"12px 10px"}>
-      <Header
-        title={"ADMINS"}
-        subTitle={"Managing admins and list of admins "}
-      />
+      <FlexBetween>
+        <Header
+          title={"ADMINS"}
+          subTitle={"Managing admins and list of admins "}
+        />
+        <Link to={"/users/add"}>
+          <Box
+            display={"flex"}
+            gap={0.5}
+            mb={"-30px !important"}
+            mr={5}
+            p={"10px 20px"}
+            sx={{
+              backgroundColor: colors.background.alt,
+              borderRadius: "8px",
+              border: `1px solid ${colors.primary[200]}`,
+              cursor: "pointer",
+            }}
+          >
+            <AddCircleOutline sx={{ color: colors.primary[100] }} />
+            <Typography
+              variant="h5"
+              textTransform={"capitalize"}
+              color={colors.primary[100]}
+            >
+              Add User
+            </Typography>
+          </Box>
+        </Link>
+      </FlexBetween>
       <Box
         mt={3}
         height={"72vh"}

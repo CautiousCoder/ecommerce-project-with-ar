@@ -46,3 +46,10 @@ export const getUserPerformance = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+// send user data to database
+export const sendUserData = async (req, res) => {
+  User.create(req.body)
+    .then((user) => console.log("user inserted"))
+    .catch((err) => console.log("Err", err));
+};

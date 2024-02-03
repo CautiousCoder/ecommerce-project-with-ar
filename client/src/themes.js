@@ -56,6 +56,7 @@ export const tokensDark = {
     900: "#2c100f",
   },
   blueAccent: {
+    0: "#efefef",
     100: "#efefef",
     200: "#6f7777",
     300: "#8faadc",
@@ -65,6 +66,7 @@ export const tokensDark = {
     700: "#294476",
     800: "#00416A",
     900: "#002147",
+    1000: "#383c4a",
   },
 };
 
@@ -120,6 +122,8 @@ export const themeSetting = (mode) => {
               ...tokensDark.blueAccent,
               default: tokensDark.blueAccent[900],
               alt: tokensDark.blueAccent[800],
+              frontDark: tokensDark.blueAccent[1000],
+              frontLight: tokensDark.blueAccent[0],
             },
           }
         : {
@@ -148,6 +152,8 @@ export const themeSetting = (mode) => {
               ...tokensLight.blueAccent,
               default: tokensLight.blueAccent[900],
               alt: tokensLight.blueAccent[800],
+              frontDark: tokensLight.blueAccent[1000],
+              frontLight: tokensLight.blueAccent[0],
             },
           }),
     },

@@ -6,10 +6,17 @@
  */
 
 import express from "express";
-import { getAdmins, getUserPerformance } from "../controllers/management.js";
+import {
+  getAdmins,
+  getUserPerformance,
+  sendUserData,
+} from "../controllers/management.js";
 
 const router = express.Router();
-router.get("/admins", getAdmins);
+router.get("/users", getAdmins);
 router.get("/performance/:id", getUserPerformance);
+
+// add users
+router.post("/users/add", sendUserData);
 
 export default router;
