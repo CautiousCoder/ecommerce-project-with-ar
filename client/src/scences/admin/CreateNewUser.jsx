@@ -200,9 +200,9 @@ const CreateNewUser = () => {
           phoneNumber: values.contact,
           role: values.role,
         })
-        .then((resust) => {
-          console.log("result", resust);
-          navigate("/users");
+        .then((result) => {
+          console.log("result", result);
+          navigate("/management/users");
         })
         .catch((err) => console.log("Error", err));
     }

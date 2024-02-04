@@ -1,4 +1,7 @@
 import getCountryISO3 from "country-iso-2-to-3";
+import multer from "multer";
+import path from "path";
+import Category from "../models/Category.js";
 import Product from "../models/Product.js";
 import ProductStat from "../models/ProductStat.js";
 import Transaction from "../models/Transaction.js";
@@ -22,6 +25,32 @@ export const getProdects = async (req, res) => {
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
+};
+
+// category added
+// use midleware
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, "storage/category");
+  },
+  filename: (req, file, callback) =>
+    callback(
+      null,
+      file.fieldname + "_" + Date.now() + path.extname(file.originalname)
+    ),
+});
+export const upload = multer({
+  storage: storage,
+});
+
+export const addCategory = (req, res) => {
+  Category.create({
+    name: req.body.name,
+    description: req.body.description,
+    image: req.file.filename,
+  })
+    .then((category) => console.log("Category Add Successfully."))
+    .catch((err) => console.log("Err", err));
 };
 
 // for get customers

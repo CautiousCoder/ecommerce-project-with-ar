@@ -1,6 +1,9 @@
-import { Box } from "@mui/material";
+import { AddCircleOutline } from "@mui/icons-material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import Header from "components/Header";
+import { Link } from "react-router-dom";
+import FlexBetween from "../../components/FlexBetween";
+import Header from "../../components/Header";
 
 // data grid column structure
 const columns = [
@@ -27,9 +30,37 @@ const columns = [
 ];
 
 const Category = () => {
+  const theme = useTheme();
+  const colors = theme.palette;
   return (
     <Box margin={"20px"}>
-      <Header title={"Category"} subTitle={"For your products categories."} />
+      <FlexBetween>
+        <Header title={"Category"} subTitle={"For your products categories."} />
+        <Link to={"/products/category/add"}>
+          <Box
+            display={"flex"}
+            gap={0.5}
+            mb={"-30px !important"}
+            mr={5}
+            p={"10px 20px"}
+            sx={{
+              backgroundColor: colors.background.alt,
+              borderRadius: "8px",
+              border: `1px solid ${colors.primary[200]}`,
+              cursor: "pointer",
+            }}
+          >
+            <AddCircleOutline sx={{ color: colors.primary[100] }} />
+            <Typography
+              variant="h5"
+              textTransform={"capitalize"}
+              color={colors.primary[100]}
+            >
+              Add Category
+            </Typography>
+          </Box>
+        </Link>
+      </FlexBetween>
       <Box
         mt={3}
         height={"72vh"}
@@ -72,11 +103,8 @@ const Category = () => {
         <DataGrid
           loading={true}
           getRowId={(row) => row._id}
-          rows={data || []}
+          rows={[]}
           columns={columns}
-          slots={{
-            columnMenu: CustomColumnMenu,
-          }}
         />
       </Box>
     </Box>

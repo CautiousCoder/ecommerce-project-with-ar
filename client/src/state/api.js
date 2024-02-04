@@ -64,10 +64,6 @@ export const api = createApi({
       query: (id) => `management/performance/${id}`,
       providesTags: ["Performance"],
     }),
-    // getAdmins: build.query({
-    //   query: () => "management/admins/add",
-    //   providesTags: ["Admins"],
-    // }),
   }),
 });
 
