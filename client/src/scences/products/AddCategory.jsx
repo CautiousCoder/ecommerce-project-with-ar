@@ -40,6 +40,7 @@ const AddCategory = () => {
   const handleClickOnFormSubmit = async (values) => {
     const formData = new FormData();
     formData.append("name", values.name);
+    formData.append("description", values.description);
     formData.append("file", file);
 
     await axios

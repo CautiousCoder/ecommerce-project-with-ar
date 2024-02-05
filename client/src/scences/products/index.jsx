@@ -24,7 +24,7 @@ const Products = () => {
   const colors = theme.palette;
   const { data, isLoading } = useGetProductsQuery();
   const isNonMobile = useMediaQuery("(min-width: 762px)");
-  console.log("data", data);
+  // console.log("data", data);
 
   // New Component
   const ExpandMore = styled((props) => {

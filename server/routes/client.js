@@ -7,7 +7,10 @@
 import express from "express";
 
 import {
+  ProductImageUpload,
   addCategory,
+  addProduct,
+  getCategory,
   getCustomers,
   getGeography,
   getProdects,
@@ -19,6 +22,18 @@ const router = express.Router();
 
 //get Product
 router.get("/products", getProdects);
+
+// post product
+router.post(
+  "/products/addProduct",
+  ProductImageUpload.single("file"),
+  addProduct
+);
+
+// for get Category
+router.get("/products/category", getCategory);
+// for product page get Category
+router.get("/products/addProduct", getCategory);
 
 // post category
 router.post("/products/category/add", upload.single("file"), addCategory);

@@ -3,10 +3,23 @@ const ProductSchema = new mongoose.Schema(
   {
     name: String,
     price: Number,
-    description: String,
+    description: {
+      type: String,
+      default: null,
+    },
+    shortDes: {
+      type: String,
+      default: null,
+    },
     category: String,
-    rating: Number,
-    supply: Number,
+    rating: {
+      type: Number,
+      default: 0,
+    },
+    supply: {
+      type: Number,
+      default: 0,
+    },
     img: {
       type: String,
       default: null,

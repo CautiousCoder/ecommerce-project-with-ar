@@ -4,6 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import FlexBetween from "../../components/FlexBetween";
 import Header from "../../components/Header";
+import { useGetCategoryQuery } from "../../state/api";
 
 // data grid column structure
 const columns = [
@@ -23,7 +24,7 @@ const columns = [
     flex: 1,
   },
   {
-    field: "dex",
+    field: "description",
     headerName: "Description",
     flex: 2,
   },
@@ -32,6 +33,9 @@ const columns = [
 const Category = () => {
   const theme = useTheme();
   const colors = theme.palette;
+  const { data, isLoading } = useGetCategoryQuery();
+  // console.log("object", data);
+
   return (
     <Box margin={"20px"}>
       <FlexBetween>
@@ -101,9 +105,9 @@ const Category = () => {
         }}
       >
         <DataGrid
-          loading={true}
+          loading={isLoading}
           getRowId={(row) => row._id}
-          rows={[]}
+          rows={data || []}
           columns={columns}
         />
       </Box>

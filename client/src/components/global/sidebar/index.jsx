@@ -6,7 +6,6 @@ import {
   ChevronLeft,
   ChevronRightOutlined,
   ExpandLessOutlined,
-  ExpandMoreOutlined,
   Groups2,
   HomeOutlined,
   PieChartOutline,
@@ -81,6 +80,7 @@ const Sidebar = ({
   const navigate = useNavigate();
   const theme = useTheme();
   const colors = theme.palette;
+  var toggle = false;
 
   useEffect(() => {
     setActive(pathname.substring(1));
@@ -178,20 +178,21 @@ const Sidebar = ({
                   >
                     <ListItemButton
                       onClick={() => {
-                        linkText === "products"
-                          ? null
+                        linkText === "products" && toggle === true
+                          ? (toggle = true)
                           : navigate(`/${linkText}`);
                         setActive(linkText);
-                        linkText === "products"
-                          ? setClick(true)
-                          : setClick(false);
+                        toggle = true;
                         linkText === "products"
                           ? setOpen(true)
                           : setOpen(false);
                       }}
                       sx={{
                         backgroundColor:
-                          active === linkText ? colors.secondary[600] : "",
+                          active === linkText ||
+                          (subActive.length > 2 && linkText === "products")
+                            ? colors.secondary[600]
+                            : "",
                         padding: "4px !important",
                       }}
                     >
@@ -214,11 +215,12 @@ const Sidebar = ({
                         }}
                         primary={text}
                       />
-                      {linkText === active ? (
+                      {linkText === "products" ? (
                         open ? (
                           <ExpandLessOutlined />
                         ) : (
-                          <ExpandMoreOutlined />
+                          // <ExpandMoreOutlined />
+                          ""
                         )
                       ) : (
                         active === linkText && (
@@ -247,7 +249,7 @@ const Sidebar = ({
                                     onClick={() => {
                                       navigate(`/${linkText}/${link}`);
                                       setSubActive(link);
-                                      setActive(linkText);
+                                      toggle = true;
                                     }}
                                     sx={{
                                       backgroundColor:

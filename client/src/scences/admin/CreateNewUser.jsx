@@ -353,6 +353,7 @@ const CreateNewUser = () => {
                   }}
                 />
                 <FormControl
+                  fullWidth
                   variant="filled"
                   sx={{
                     color: colors.primary[200],

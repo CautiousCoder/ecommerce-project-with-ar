@@ -13,6 +13,8 @@ export const api = createApi({
     "Sales",
     "Admins",
     "Performance",
+    "Category",
+    "ProductCategory",
   ],
   endpoints: (build) => ({
     // front-end route
@@ -48,6 +50,15 @@ export const api = createApi({
       query: () => "client/geography",
       providesTags: ["Geography"],
     }),
+    // get category
+    getCategory: build.query({
+      query: () => "client/products/category",
+      providesTags: ["Category"],
+    }),
+    getProductCategory: build.query({
+      query: () => "client/products/addProduct",
+      providesTags: ["ProductCategory"],
+    }),
 
     // for sales route
     getSales: build.query({
@@ -77,4 +88,6 @@ export const {
   useGetSalesQuery,
   useGetAdminsQuery,
   useGetPerformanceQuery,
+  useGetCategoryQuery,
+  useGetProductCategoryQuery,
 } = api;

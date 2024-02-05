@@ -27,14 +27,55 @@ export const getProdects = async (req, res) => {
   }
 };
 
+// product image upload
+// use midleware
+const ProductStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "storage/post");
+  },
+  filename: (req, file, cb) =>
+    cb(
+      null,
+      file.fieldname + "_" + Date.now() + path.extname(file.originalname)
+    ),
+});
+export const ProductImageUpload = multer({
+  storage: ProductStorage,
+});
+
+// for post product
+export const addProduct = async (req, res) => {
+  console.log(req.body);
+  Product.create({
+    name: req.body.name,
+    description: req.body.description,
+    shortDes: req.body.shortDes,
+    price: req.body.price,
+    supply: req.body.supply,
+    category: req.body.category,
+    img: req.file.filename,
+  })
+    .then((product) => console.log("Product Add Successfully."))
+    .catch((err) => console.log("Err", err));
+};
+
+// get category
+export const getCategory = async (req, res) => {
+  try {
+    const category = await Category.find();
+    res.status(200).json(category);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
 // category added
 // use midleware
 const storage = multer.diskStorage({
-  destination: (req, file, callback) => {
-    callback(null, "storage/category");
+  destination: (req, file, cb) => {
+    cb(null, "storage/category");
   },
-  filename: (req, file, callback) =>
-    callback(
+  filename: (req, file, cb) =>
+    cb(
       null,
       file.fieldname + "_" + Date.now() + path.extname(file.originalname)
     ),
