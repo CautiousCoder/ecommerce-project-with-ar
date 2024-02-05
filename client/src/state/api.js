@@ -15,10 +15,14 @@ export const api = createApi({
     "Performance",
     "Category",
     "ProductCategory",
+    "Home",
   ],
   endpoints: (build) => ({
     // front-end route
-
+    getHomeData: build.query({
+      query: () => "frontend/home",
+      providesTags: ["Home"],
+    }),
     // for general route
     getUser: build.query({
       query: (id) => `general/user/${id}`,
@@ -90,4 +94,5 @@ export const {
   useGetPerformanceQuery,
   useGetCategoryQuery,
   useGetProductCategoryQuery,
+  useGetHomeDataQuery,
 } = api;

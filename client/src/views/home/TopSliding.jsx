@@ -1,8 +1,11 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import FlexBetween from "../../components/FlexBetween";
 import MainCarousel from "./carousel/MainCarousel";
 
-const TopSliding = ({ colors, isNonMobile = true }) => {
+const TopSliding = ({ data, colors, isNonMobile = true }) => {
   //   const isNonMobile = true;
+  // console.log("data", data);
 
   return (
     <Box
@@ -33,9 +36,14 @@ const TopSliding = ({ colors, isNonMobile = true }) => {
           overflow: "hidden",
           zIndex: 1200,
           objectFit: "fill",
+          height: "100%",
+          "& .MuiBox-root css-19mzxgl": { height: "100% !important" },
+          "& .alice-carousel": { height: "100% !important" },
+          "& .alice-carousel > div": { height: "100% !important" },
+          "& .alice-carousel__wrapper": { height: "100% !important" },
         }}
       >
-        <MainCarousel infinite={false} />
+        <MainCarousel data={data} colors={colors} />
       </Box>
       <Box
         gridColumn={"span 6"}
@@ -50,7 +58,43 @@ const TopSliding = ({ colors, isNonMobile = true }) => {
           clipPath: "polygon(15% 100%, 0% 0%, 95% 0%, 100% 100%)",
         }}
       >
-        <MainCarousel type={"fadeout"} infinite={false} />
+        <FlexBetween
+          sx={{
+            height: "100%",
+            backgroundColor: colors.background.alt,
+          }}
+        >
+          <Stack p={3} ml={10}>
+            <Typography variant="h4" color={colors.primary[100]}>
+              {data ? data[3].name : ""}
+            </Typography>
+            <Link>
+              <Button
+                type="button"
+                sx={{
+                  mt: "10px",
+                  padding: "12px 25px",
+                  borderRadius: "8px",
+                  backgroundColor: colors.background.default,
+                  color: colors.primary[100],
+                }}
+              >
+                Shop Now
+              </Button>
+            </Link>
+          </Stack>
+          <Box
+            sx={{
+              width: "50%",
+              height: "100%",
+              backgroundImage: `url(http://localhost:5000/category/${
+                data ? data[3].image : ""
+              })`,
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "fit",
+            }}
+          ></Box>
+        </FlexBetween>
       </Box>
       <Box
         gridColumn={"span 6"}
@@ -65,7 +109,43 @@ const TopSliding = ({ colors, isNonMobile = true }) => {
           clipPath: "polygon(5% 100%, 0% 0%, 85% 0%, 100% 100%)",
         }}
       >
-        <MainCarousel type={"fadeout"} duration={1000} infinite={false} />
+        <FlexBetween
+          sx={{
+            height: "100%",
+            backgroundColor: colors.background.alt,
+          }}
+        >
+          <Stack p={3} ml={10}>
+            <Typography variant="h4" color={colors.primary[100]}>
+              {data ? data[2].name : ""}
+            </Typography>
+            <Link>
+              <Button
+                type="button"
+                sx={{
+                  mt: "10px",
+                  padding: "12px 25px",
+                  borderRadius: "8px",
+                  backgroundColor: colors.background.default,
+                  color: colors.primary[100],
+                }}
+              >
+                Shop Now
+              </Button>
+            </Link>
+          </Stack>
+          <Box
+            sx={{
+              width: "50%",
+              height: "100%",
+              backgroundImage: `url(http://localhost:5000/category/${
+                data ? data[2].image : ""
+              })`,
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "fit",
+            }}
+          ></Box>
+        </FlexBetween>
       </Box>
     </Box>
   );

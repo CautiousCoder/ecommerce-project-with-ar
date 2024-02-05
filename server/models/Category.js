@@ -13,12 +13,6 @@ const categorySchema = new mongoose.Schema({
     type: String,
     default: null,
   },
-  productId: [
-    {
-      type: String,
-      default: null,
-    },
-  ],
 });
 
 const Category = mongoose.model("Category", categorySchema);

@@ -45,7 +45,6 @@ export const ProductImageUpload = multer({
 
 // for post product
 export const addProduct = async (req, res) => {
-  console.log(req.body);
   Product.create({
     name: req.body.name,
     description: req.body.description,

@@ -46,7 +46,7 @@ const AddCategory = () => {
     await axios
       .post("http://localhost:5000/client/products/category/add", formData)
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         navigate("/products/category");
       })
       .catch((err) => console.log(err));

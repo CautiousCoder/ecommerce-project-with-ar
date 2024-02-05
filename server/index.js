@@ -15,11 +15,11 @@ import mongoose from "mongoose";
 import morgan from "morgan";
 
 import clientRoutes from "./routes/client.js";
-import frontEndRoutes from "./routes/frontEnd.js";
+import frontendRoutes from "./routes/frontend.js";
 import generalRoutes from "./routes/general.js";
 import managementRoutes from "./routes/management.js";
 import salesRoutes from "./routes/sales.js";
-import signedUserRoutes from "./routes/signedUser.js";
+import signedUserRoutes from "./routes/signeduser.js";
 
 // data inject
 
@@ -53,13 +53,14 @@ app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+app.use(express.static("storage"));
 
 // set template engine
 app.set("view engine", "ejs");
 
 // FRONTEND ROUTES
-app.use("/frontEnd", frontEndRoutes);
-app.use("/signedUser", signedUserRoutes);
+app.use("/frontend", frontendRoutes);
+app.use("/signeduser", signedUserRoutes);
 
 // BACKEND ROUTES
 app.use("/general", generalRoutes);
@@ -70,9 +71,9 @@ app.use("/sales", salesRoutes);
 const port = process.env.PORT || 9000;
 
 // test route
-app.get("/", (req, res) => {
-  res.send("Home Route");
-});
+// app.get("/", (req, res) => {
+//   res.send("Home Route");
+// });
 
 // Connect Mongo DB
 mongoose

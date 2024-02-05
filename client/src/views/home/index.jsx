@@ -1,5 +1,6 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import ProductView from "../../components/ProductView";
+import { useGetHomeDataQuery } from "../../state/api";
 import CategoryView from "./CategoryView";
 import TopSliding from "./TopSliding";
 import LeftingCarousel from "./carousel/LeftingCarousel";
@@ -11,9 +12,13 @@ const Home = () => {
   const theme = useTheme();
   const colors = theme.palette;
 
+  // data
+  const { data, isLoading } = useGetHomeDataQuery();
+  // console.log("object", data);
+
   return (
     <Box margin={"0px 3.5%"}>
-      <TopSliding colors={colors} />
+      <TopSliding data={data} colors={colors} />
       <Typography variant="h3" textTransform={"uppercase"}>
         Top sale
       </Typography>

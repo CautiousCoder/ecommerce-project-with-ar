@@ -1,5 +1,5 @@
 import { Box, Stack } from "@mui/material";
-import Home from "../../views/home";
+import { Outlet } from "react-router-dom";
 import Navbar from "../../views/navbar";
 
 const FrontLayout = () => {
@@ -7,7 +7,7 @@ const FrontLayout = () => {
     <Box>
       <Stack>
         <Navbar />
-        <Home />
+        <Outlet />
       </Stack>
     </Box>
   );

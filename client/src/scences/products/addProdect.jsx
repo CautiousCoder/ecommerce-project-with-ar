@@ -12,6 +12,7 @@ import {
 import axios from "axios";
 import { Formik } from "formik";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import Header from "../../components/Header";
 import { useGetProductCategoryQuery } from "../../state/api";
@@ -29,7 +30,7 @@ const initialValues = {
 
 // schema validation
 const productSchema = yup.object().shape({
-  name: yup.string().required("Name field is required.").max(100),
+  name: yup.string().required("Name field is required."),
   price: yup.number().required("Price field is required."),
   description: yup.string().nullable(),
   shortDes: yup.string().required("Field is required"),
@@ -61,6 +62,7 @@ const productSchema = yup.object().shape({
 const AddProdect = () => {
   const theme = useTheme();
   const colors = theme.palette;
+  const navigate = useNavigate();
 
   const { data } = useGetProductCategoryQuery();
 
@@ -81,7 +83,7 @@ const AddProdect = () => {
       .post("http://localhost:5000/client/products/addProduct", formData)
       .then((result) => {
         console.log(result);
-        // navigate("/client/products");
+        navigate("/client/products");
       })
       .catch((err) => console.log(err));
   };

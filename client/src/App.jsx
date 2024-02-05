@@ -35,9 +35,7 @@ function App() {
         <Routes>
           <Route element={<FrontLayout />}>
             <Route path="/" element={<Navigate to="/home" replace />} />
-            {/* frontent route */}
             <Route path="/home" element={<Home />} />
-            {/* frontent route */}
           </Route>
           <Route element={<Layout />}>
             <Route

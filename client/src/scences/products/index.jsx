@@ -102,10 +102,10 @@ const Products = () => {
             <Typography>id: {_id}</Typography>
             <Typography>Supply Left: {supply}</Typography>
             <Typography>
-              Yearly Sale(This Year): {stat[0].yearlySalesTotal}
+              Yearly Sale(This Year): {stat[0]?.yearlySalesTotal}
             </Typography>
             <Typography>
-              Yearly Units Sold(This Year): {stat[0].yearlyTotalSoldUnits}
+              Yearly Units Sold(This Year): {stat[0]?.yearlyTotalSoldUnits}
             </Typography>
           </CardContent>
         </Collapse>
