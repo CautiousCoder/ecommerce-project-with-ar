@@ -1,6 +1,8 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
+import { Link } from "react-router-dom";
+import FlexBetween from "../../../components/FlexBetween";
 
 const defaultData = [
   { name: "Product" },
@@ -27,20 +29,43 @@ const LeftingCarousel = ({
   data = defaultData,
   duration = 5000,
   infinite = false,
-  colors = null,
+  colors,
 }) => {
-  const items = data.map((item) => (
-    <Box>
-      <Box
-        m={0.5}
-        p={1}
-        sx={{
-          backgroundColor: colors.background.alt,
-        }}
-      >
-        <Typography variant="h6">{item.name}</Typography>
+  const items = data?.map((item) => (
+    <Stack height={"320px"} width={"200px"}>
+      <Box width={"100%"} height={"150px"}>
+        <img
+          src={`http://localhost:5000/post/${item.img}`}
+          alt="Products"
+          height={"150px !important"}
+          width={"100%"}
+          style={{
+            height: "150px",
+          }}
+        />
       </Box>
-    </Box>
+      <Typography mt={2} variant="h5" color={colors.primary[100]}>
+        {item.name}
+      </Typography>
+      <FlexBetween>
+        <Typography mt={2} variant="h6" color={colors.primary[100]}>
+          ${item.price}
+        </Typography>
+        <Link>
+          <Button
+            sx={{
+              padding: "10px 20px",
+              pt: "10px",
+              borderRadius: "10px",
+              color: colors.primary[100],
+              backgroundColor: colors.background.alt,
+            }}
+          >
+            Buy Now
+          </Button>
+        </Link>
+      </FlexBetween>
+    </Stack>
   ));
   return (
     <AliceCarousel

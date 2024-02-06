@@ -1,4 +1,13 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import FlexBetween from "../../components/FlexBetween";
 import MainCarousel from "./carousel/MainCarousel";
@@ -26,7 +35,23 @@ const TopSliding = ({ data, colors, isNonMobile = true }) => {
           backgroundColor: colors.background.alt,
         }}
       >
-        <Typography>hi</Typography>
+        <nav>
+          <List
+            sx={{
+              "& .css-122l0rq-MuiButtonBase-root-MuiListItemButton-root": {
+                p: "2px 10px",
+              },
+            }}
+          >
+            {data?.map((item) => (
+              <ListItem key={item._id} disablePadding>
+                <ListItemButton>
+                  <ListItemText primary={item.name} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </nav>
       </Box>
       <Box
         gridColumn={"span 8"}

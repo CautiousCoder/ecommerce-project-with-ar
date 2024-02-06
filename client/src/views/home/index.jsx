@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import ProductView from "../../components/ProductView";
 import { useGetHomeDataQuery } from "../../state/api";
 import CategoryView from "./CategoryView";
@@ -12,30 +12,39 @@ const Home = () => {
   const theme = useTheme();
   const colors = theme.palette;
 
+  const isNonMobile = useMediaQuery("(min-width: 762px)");
+
   // data
   const { data, isLoading } = useGetHomeDataQuery();
   // console.log("object", data);
 
   return (
     <Box margin={"0px 3.5%"}>
-      <TopSliding data={data} colors={colors} />
+      <TopSliding data={data ? data.category : undefined} colors={colors} />
       <Typography variant="h3" textTransform={"uppercase"}>
         Top sale
       </Typography>
       <Box>
-        <LeftingCarousel colors={colors} />
+        <LeftingCarousel
+          data={data ? data.products : undefined}
+          colors={colors}
+        />
       </Box>
       <Typography variant="h3" textTransform={"uppercase"}>
         Category
       </Typography>
       <Box>
-        <CategoryView />
+        <CategoryView data={data ? data.category : undefined} colors={colors} />
       </Box>
       <Typography variant="h3" textTransform={"uppercase"}>
         Just For You
       </Typography>
       <Box>
-        <ProductView colors={colors} />
+        <ProductView
+          data={data ? data.products : undefined}
+          colors={colors}
+          isNonMobile={isNonMobile}
+        />
       </Box>
     </Box>
   );
