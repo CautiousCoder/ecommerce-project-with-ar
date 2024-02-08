@@ -36,7 +36,7 @@ const MainCarousel = ({
         >
           {item.name}
         </Typography>
-        <Link>
+        <Link to={`/frontend/category/${item._id}`}>
           <Button
             sx={{
               padding: "15px 35px",

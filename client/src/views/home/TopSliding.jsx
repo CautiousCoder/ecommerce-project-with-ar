@@ -45,9 +45,11 @@ const TopSliding = ({ data, colors, isNonMobile = true }) => {
           >
             {data?.map((item) => (
               <ListItem key={item._id} disablePadding>
-                <ListItemButton>
-                  <ListItemText primary={item.name} />
-                </ListItemButton>
+                <Link to={`/frontend/category/${item._id}`}>
+                  <ListItemButton>
+                    <ListItemText primary={item.name} />
+                  </ListItemButton>
+                </Link>
               </ListItem>
             ))}
           </List>

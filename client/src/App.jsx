@@ -20,6 +20,7 @@ import AddProdect from "./scences/products/addProdect.jsx";
 import Products from "./scences/products/index.jsx";
 import Transactions from "./scences/transactions/index.jsx";
 import { themeSetting } from "./themes.js";
+import CategoryProduct from "./views/categoryProduct/index.jsx";
 import Home from "./views/home";
 import FrontLayout from "./views/layout";
 
@@ -36,6 +37,10 @@ function App() {
           <Route element={<FrontLayout />}>
             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<Home />} />
+            <Route
+              path="/frontend/category/:id"
+              element={<CategoryProduct />}
+            />
           </Route>
           <Route element={<Layout />}>
             <Route

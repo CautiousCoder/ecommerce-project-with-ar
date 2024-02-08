@@ -16,6 +16,7 @@ export const api = createApi({
     "Category",
     "ProductCategory",
     "Home",
+    "AllPostByCategory",
   ],
   endpoints: (build) => ({
     // front-end route
@@ -23,6 +24,20 @@ export const api = createApi({
       query: () => "frontend/home",
       providesTags: ["Home"],
     }),
+
+    // get all post under a category
+    getAllPostByCategory: build.query({
+      // query: (id) => `frontend/home/category?id=${id}`,
+      query: (id) => ({
+        url: "frontend/home/category",
+        method: "GET",
+        params: { id },
+      }),
+      /* method: "GET",
+        params: { id }, */
+      // providesTags: ["AllPostByCategory"],
+    }),
+
     // for general route
     getUser: build.query({
       query: (id) => `general/user/${id}`,
@@ -95,4 +110,5 @@ export const {
   useGetCategoryQuery,
   useGetProductCategoryQuery,
   useGetHomeDataQuery,
+  useGetAllPostByCategoryQuery,
 } = api;

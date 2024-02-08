@@ -5,18 +5,6 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 
-const imageData = [
-  { name: "category1", link: "https://picsum.photos/id/1/600/400" },
-  { name: "category2", link: "https://picsum.photos/id/4/600/400" },
-  { name: "category3", link: "https://picsum.photos/id/7/600/400" },
-  { name: "category1", link: "https://picsum.photos/id/11/600/400" },
-  { name: "category2", link: "https://picsum.photos/id/41/600/400" },
-  { name: "category3", link: "https://picsum.photos/id/17/600/400" },
-  { name: "category1", link: "https://picsum.photos/id/51/600/400" },
-  { name: "category2", link: "https://picsum.photos/id/8/600/400" },
-  { name: "category3", link: "https://picsum.photos/id/3/600/400" },
-];
-
 const CategoryView = ({ data, isNonMobile = true, colors }) => {
   return (
     <Box
@@ -31,7 +19,7 @@ const CategoryView = ({ data, isNonMobile = true, colors }) => {
     >
       {data?.map((item) => (
         <Box gridColumn={"span 2"} gridRow={"span 3"}>
-          <Link>
+          <Link to={`/frontend/category/${item._id}`}>
             <Card>
               <CardActionArea>
                 <CardMedia
