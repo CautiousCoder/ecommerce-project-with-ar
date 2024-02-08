@@ -5,8 +5,6 @@ import ProductView from "../../components/ProductView";
 import RecommandedView from "../../components/RecommandedView";
 import { useGetAllPostByCategoryQuery } from "../../state/api";
 
-const isNonMobile = true;
-
 const CategoryProduct = () => {
   const theme = useTheme();
   const colors = theme.palette;

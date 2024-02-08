@@ -7,6 +7,7 @@ export const api = createApi({
     "User",
     "Dashboard",
     "Products",
+    "Product",
     "Customers",
     "Transactions",
     "Geography",
@@ -33,9 +34,17 @@ export const api = createApi({
         method: "GET",
         params: { id },
       }),
-      /* method: "GET",
-        params: { id }, */
-      // providesTags: ["AllPostByCategory"],
+      providesTags: ["AllPostByCategory"],
+    }),
+
+    // get a single post
+    getProduct: build.query({
+      query: (id) => ({
+        url: "frontend/home/product",
+        method: "GET",
+        params: { id },
+      }),
+      providesTags: ["Product"],
     }),
 
     // for general route
@@ -111,4 +120,5 @@ export const {
   useGetProductCategoryQuery,
   useGetHomeDataQuery,
   useGetAllPostByCategoryQuery,
+  useGetProductQuery,
 } = api;

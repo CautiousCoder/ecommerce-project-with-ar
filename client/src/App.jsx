@@ -23,6 +23,7 @@ import { themeSetting } from "./themes.js";
 import CategoryProduct from "./views/categoryProduct/index.jsx";
 import Home from "./views/home";
 import FrontLayout from "./views/layout";
+import Product from "./views/product/index.jsx";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -41,6 +42,7 @@ function App() {
               path="/frontend/category/:id"
               element={<CategoryProduct />}
             />
+            <Route path="/frontend/product/:id" element={<Product />} />
           </Route>
           <Route element={<Layout />}>
             <Route

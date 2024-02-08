@@ -12,15 +12,14 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
 
 const ProductView = ({ data, colors, isNonMobile }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const handleExpandClick = () => {
-    setIsExpanded(!isExpanded);
-  };
+  // const [isExpanded, setIsExpanded] = useState(false);
+  // const handleExpandClick = () => {
+  //   setIsExpanded(!isExpanded);
+  // };
 
   return (
     <Box
@@ -68,7 +67,7 @@ const ProductView = ({ data, colors, isNonMobile }) => {
                 </Typography>
                 <Rating value={rating} readOnly />
               </Stack>
-              <Link>
+              <Link to={`/frontend/product/${_id}`}>
                 <Button
                   sx={{
                     padding: "10px 20px",
