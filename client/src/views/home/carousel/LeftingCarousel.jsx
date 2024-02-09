@@ -4,21 +4,6 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import { Link } from "react-router-dom";
 import FlexBetween from "../../../components/FlexBetween";
 
-const defaultData = [
-  { name: "Product" },
-  { name: "Product1" },
-  { name: "Product2" },
-  { name: "Product3" },
-  { name: "Product4" },
-  { name: "Product5" },
-  { name: "Product" },
-  { name: "Product1" },
-  { name: "Product2" },
-  { name: "Product3" },
-  { name: "Product4" },
-  { name: "Product5" },
-];
-
 const responsive = {
   0: { items: 1 },
   992: { items: 2 },
@@ -26,7 +11,7 @@ const responsive = {
   1200: { items: 5 },
 };
 const LeftingCarousel = ({
-  data = defaultData,
+  data,
   duration = 5000,
   infinite = false,
   colors,
@@ -51,7 +36,7 @@ const LeftingCarousel = ({
         <Typography mt={2} variant="h6" color={colors.primary[100]}>
           ${item.price}
         </Typography>
-        <Link>
+        <Link to={`/frontend/product/${item._id}`}>
           <Button
             sx={{
               padding: "10px 20px",

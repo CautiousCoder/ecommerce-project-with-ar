@@ -10,7 +10,6 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import PropTypes from "prop-types";
 import { useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import { Link, useParams } from "react-router-dom";
@@ -31,11 +30,11 @@ const responsive1 = {
   1024: { items: 4 },
 };
 
-SimpleDialog.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.string.isRequired,
-};
+// SimpleDialog.propTypes = {
+//   onClose: PropTypes.func.isRequired,
+//   open: PropTypes.bool.isRequired,
+//   selectedValue: PropTypes.string.isRequired,
+// };
 
 const Product = () => {
   const theme = useTheme();

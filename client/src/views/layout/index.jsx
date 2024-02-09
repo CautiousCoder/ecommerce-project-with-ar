@@ -1,4 +1,5 @@
 import { Box, Stack } from "@mui/material";
+
 import { Outlet } from "react-router-dom";
 import Navbar from "../../views/navbar";
 

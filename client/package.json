@@ -21,6 +21,8 @@
     "@nivo/geo": "^0.84.0",
     "@nivo/line": "^0.84.0",
     "@nivo/pie": "^0.84.0",
+    "@react-three/drei": "^9.97.3",
+    "@react-three/fiber": "^8.15.16",
     "@reduxjs/toolkit": "^2.0.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "axios": "^1.6.7",
