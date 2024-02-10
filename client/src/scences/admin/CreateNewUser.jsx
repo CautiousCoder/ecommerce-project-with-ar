@@ -201,8 +201,8 @@ const CreateNewUser = () => {
           role: values.role,
         })
         .then((result) => {
-          console.log("result", result);
-          navigate("/management/users");
+          // console.log("result", result);
+          navigate("/management/users", { replace: true });
         })
         .catch((err) => console.log("Error", err));
     }

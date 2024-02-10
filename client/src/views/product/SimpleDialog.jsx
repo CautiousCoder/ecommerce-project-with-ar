@@ -9,9 +9,10 @@ import FlexBetween from "../../components/FlexBetween";
 // import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { Environment, OrbitControls } from "@react-three/drei";
 import Laptop from "../../../public/Laptop";
+import Shirt from "../../../public/shirt/Shirt";
 
 const SimpleDialog = (params) => {
-  const { onClose, open } = params;
+  const { onClose, open, id } = params;
   const handleClose = () => {
     onClose();
   };
@@ -81,7 +82,7 @@ const SimpleDialog = (params) => {
             <hemisphereLight args={["#ffffff", "#ff0", 1]} />
             <pointLight args={["#fff", 1]} />
             <OrbitControls />
-            <Laptop />
+            {id === "65c7abe4bd82dc00babc051f" ? <Shirt /> : <Laptop />}
           </Suspense>
           <Environment preset="forest" background blur={0.5} />
         </Canvas>

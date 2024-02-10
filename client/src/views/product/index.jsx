@@ -187,7 +187,7 @@ const Product = () => {
             >
               <ViewInAr />
             </Button>
-            <SimpleDialog open={open} onClose={handleClose} />
+            <SimpleDialog id={id} open={open} onClose={handleClose} />
           </Box>
         </Box>
         <Card sx={{ padding: "12px", backgroundColor: colors.background.alt }}>
